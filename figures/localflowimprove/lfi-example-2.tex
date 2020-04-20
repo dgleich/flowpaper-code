@@ -1,0 +1,146 @@
+% Circumscribed Parallelepiped
+% Author: Axel Pavillet
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{tkz-graph}
+\usepackage{relsize}
+\usepackage{adjustbox}
+\usetikzlibrary{fit,arrows,decorations.markings,calc,shapes,backgrounds}
+​
+\definecolor{cd40000}{RGB}{212,0,0}
+\definecolor{cffffff}{RGB}{255,255,255}
+\definecolor{c2a7fff}{RGB}{42,127,255}
+\definecolor{c0000d9}{RGB}{0,0,217}
+\definecolor{c0000ff}{RGB}{0,0,255}
+%\definecolor{bluecolor}{RGB}{71,190,255}
+%\definecolor{bluecolor}{RGB}{255,186,81}
+\definecolor{bluecolor}{RGB}{136,224,223}
+\definecolor{darkgrey}{RGB}{150,150,150}
+\definecolor{lightgrey}{RGB}{226,226,226}
+​
+%\definecolor{bluecolor}{RGB}{25,174,255}
+\colorlet{Rcolor}{bluecolor}
+​
+%\definecolor{bordercolor}{RGB}{25,174,255}
+\colorlet{bordercolor}{bluecolor}
+​
+%\definecolor{Rbarcolor}{RGB}{25,174,255}
+%\definecolor{Rbarcolor}{RGB}{226,226,226}
+\colorlet{Rbarcolor}{lightgrey}
+​
+\colorlet{scolor}{bluecolor}
+\colorlet{tcolor}{bluecolor}
+​
+%\definecolor{scolor}{RGB}{25,174,255}
+%\definecolor{tcolor}{RGB}{25,174,255}
+​
+\usepackage{relsize}
+​
+% \tikzset{every path/.style={draw, ->,>=latex,line width=1pt,color=black}}
+​
+%\tikzset{every node/.style={draw,minimum width = 20pt,line width = 1.75pt,
+%circle,inner sep=0pt,font = \fontsize{14}{14}\selectfont,fill=none}}
+\newcommand{\n}{\text{\raisebox{0.3ex}{-}}}
+​
+\begin{document}
+​
+\tikzset{res/.style={ellipse,draw,minimum height=0.5cm,minimum width=0.8cm}}
+\tikzset{hfit/.style={rounded rectangle, inner xsep=0pt, fill=#1!30},
+           vfit/.style={rounded corners, fill=#1!30}}
+
+\begin{tikzpicture}[xscale=0.45,yscale=0.4,myellipse/.style={
+          fit=(a.corner 2) (a.corner 3),
+          draw, ellipse,
+          inner xsep=0mm,
+          inner ysep=3mm}]]
+​
+% \draw[color=black,line width=1pt] (0,0) rectangle ++(15,5);
+​
+\draw[color=white,rounded corners=10pt,line width=0pt,fill=Rcolor] (3,-0.15) rectangle ++(4.5,4.8);
+​
+\draw[color=white,rounded corners=10pt,line width=0pt,fill=Rcolor] (8.8,-0.15) rectangle ++(4.5,4.8);
+​
+%\draw [rotate around={-10:(10.95,3.85)}] (10.95,3.85) ellipse (0.7in and 0.2in);
+\draw [rotate around={-70:(9.75,3.275)},line width=0.0pt,color=bordercolor,fill=bordercolor] (9.75,3.275) ellipse (0.47in and 0.2in);
+​
+\begin{scope}[every node/.style={draw,minimum size=15,line width=1pt,circle,fill=none,font=\fontsize{14}{14}\selectfont,inner sep=0pt}]
+\node[fill=scolor,text=black] (s) at (0.75,2.5) {$s$};
+\node[fill=tcolor,text=black] (t) at (14.5,2.5) {$t$};
+\end{scope}
+​
+​
+\begin{scope}[every node/.style={draw,minimum size=10,text=Rcolor,line width=0.75pt,circle,fill=none,font=\fontsize{5}{5}\selectfont,inner sep=0pt}]
+\node (R1) at (5,4.2) {R1};
+\node (R2) at (6,3.3) {R2};
+\node (R3) at (3.5,2.8) {R3};
+\node (R4) at (6.5,1.8) {R4};
+\node (R5) at (5.5,0.4) {R5};
+%\node (R6) at (3,1.5) {R6};
+\node (aR1) at (9.5,4.1) {a1};
+\node (aR2) at (12,3.5) {a2};
+\node (aR3) at (10,2.7) {a3};
+\node (U1) at (10.3,1.6) {U1};
+\node (U2) at (12.1,0.3) {U2};
+\node (U3) at (10.5,0.4) {U3};
+\node (U4) at (12.2,2.25) {U4};
+\end{scope}
+%
+\begin{scope}[line width=1pt,color=black]
+\draw[-] (R1) to (R2);
+\draw[-] (R2) to (R4);
+\draw[-] (R2) to (R5);
+\draw[-] (R4) to (R5);
+\draw[-] (R5) to (R3);
+\draw[-] (R3) to (R1);
+\draw[-] (R3) to (R4);
+\draw[-] (R3) to (R2);
+% \draw[-] (R6) to (R3);
+% \draw[-] (R6) to (R4);
+% \draw[-] (R6) to (R5);
+\draw[-] (aR1) to (aR2);
+\draw[-] (aR1) to (aR3);
+\draw[-] (aR2) to (aR3);
+\draw[-] (U1) to (U2);
+\draw[-] (U1) to (U3);
+\draw[-] (U1) to (U4);
+\draw[-] (U2) to (U3);
+\draw[-] (U2) to (U4);
+\draw[-] (U3) to (U4);
+\draw[-] (R1) to (aR1);
+\draw[-] (R2) to (aR3);
+\draw[-] (aR2) to (U4);
+\draw[-] (aR3) to (U1);
+\end{scope}
+​
+%
+\begin{scope}[line width=1pt]
+\draw[-] (s) to [bend left=20] (R1);
+\draw[-] (s) to [bend left=15] (R2);
+\draw[-] (s) to [bend right=0] (R3);
+\draw[-] (s) to [bend right=10] (R4);
+\draw[-] (s) to [bend right=20] (R5);
+\end{scope}
+​
+\begin{scope}[line width=1pt]
+\draw[-] (aR1) to [bend left=30] (t);
+\draw[-] (aR2) to [bend left=0] (t);
+\draw[-] (aR3) to [bend right=-10] (t);
+\end{scope}
+​
+\begin{scope}[line width=1pt]
+\draw[-] (U1) to [bend right=15] (t);
+\draw[-] (U2) to [bend right=15] (t);
+\draw[-] (U3) to [bend right=10] (t);
+\draw[-] (U4) to [bend left=0] (t);
+\end{scope}
+​
+% \draw[color=cd40000,rounded corners=10pt,line width=2pt,dashed] (2.25,-0.8) rectangle ++(4.75,10);
+% \draw[color=c2a7fff,rounded corners=10pt,line width=2pt,dashed] (8,-0.8) rectangle ++(4.75,10);
+% \draw[color=yellow,rounded corners=10pt,line width=2pt,dashed] (8.25,4.5) rectangle ++(4.25,4.25);
+​
+\node[line width=0,font=\fontsize{11}{14}\selectfont] at (6.7,0.5) {$R$};
+\node[line width=0,font=\fontsize{11}{14}\selectfont] at (9.5,0.5) {$\bar{R}$};
+
+
+\end{tikzpicture}
+​
+\end{document}
